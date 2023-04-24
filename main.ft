@@ -75,8 +75,7 @@ resource "aws_security_group" "jenkins_sg" {
 
 #Create S3 bucket for Jenkins artifacts
 resource "aws_s3_bucket" "jenkins-artifacts" {
-  bucket = "jenkins-artifacts-${random_id.randomness.hex}"
-
+  bucket = "jenkins-artifacts-12345abc"
   tags = {
     Name = "jenkins_artifacts"
   }
@@ -86,9 +85,4 @@ resource "aws_s3_bucket" "jenkins-artifacts" {
 resource "aws_s3_bucket_acl" "private_bucket" {
   bucket = aws_s3_bucket.jenkins-artifacts.id
   acl    = "private"
-}
-
-#Create random number for S3 bucket name
-resource "random_id" "randomness" {
-  byte_length = 16
 }
